@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <world name="contact_oracle">
+    <gravity>0 0 -9.8</gravity>
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <model name="platform">
+      <static>true</static>
+      <link name="plate">
+        <visual name="plate_visual">
+          <geometry><box><size>2 2 0.1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="ball">
+      <pose>0 0 1 0 0 0</pose>
+      <link name="body">
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.004</ixx><iyy>0.004</iyy><izz>0.004</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+        </collision>
+        <visual name="body_visual">
+          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <topic>/oracle/ball_pose</topic>
+        <publish_model_pose>true</publish_model_pose>
+        <publish_link_pose>false</publish_link_pose>
+        <publish_nested_model_pose>false</publish_nested_model_pose>
+        <use_pose_vector_msg>false</use_pose_vector_msg>
+      </plugin>
+    </model>
+  </world>
+</sdf>

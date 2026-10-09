@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  oracle:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit and protocol tests
+        run: python -m unittest discover -s tests -v
+      - name: Set up Gazebo Harmonic
+        uses: gazebo-tooling/setup-gazebo@v0.3.0
+        with:
+          required-gazebo-distributions: harmonic
+      - name: Physical contact response
+        run: python robot_contact_oracle.py run manifest.json --evidence-out evidence.json --json
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contact-evidence
+          path: evidence.json
+          if-no-files-found: ignore

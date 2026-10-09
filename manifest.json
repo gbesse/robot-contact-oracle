@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "support",
+      "world": "worlds/support.sdf",
+      "world_name": "contact_oracle",
+      "pose_topic": "/oracle/ball_pose",
+      "entity_name": "ball",
+      "sample_after_iterations": [1000, 1500, 2000],
+      "min_z_m": 0.13,
+      "max_z_m": 0.18,
+      "timeout_s": 30
+    },
+    {
+      "id": "no-support",
+      "world": "worlds/no-support.sdf",
+      "world_name": "contact_oracle",
+      "pose_topic": "/oracle/ball_pose",
+      "entity_name": "ball",
+      "sample_after_iterations": [1000, 1500, 2000],
+      "max_z_m": -0.5,
+      "timeout_s": 30
+    }
+  ]
+}

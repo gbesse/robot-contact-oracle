@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "support",
+      "baseline_iterations": 100,
+      "samples": [
+        {"iterations": 1100, "z_m": -3.9},
+        {"iterations": 1600, "z_m": -10.2},
+        {"iterations": 2100, "z_m": -18.8}
+      ]
+    },
+    {
+      "id": "no-support",
+      "baseline_iterations": 100,
+      "samples": [
+        {"iterations": 1200, "z_m": -3.9},
+        {"iterations": 1700, "z_m": -10.2},
+        {"iterations": 2200, "z_m": -18.8}
+      ]
+    }
+  ]
+}
